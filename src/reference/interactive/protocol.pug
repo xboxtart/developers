@@ -14,7 +14,7 @@ p.
     A connection should then be made to the recieved address and the key and
     channel id must be included in the #[code Handshake] packet.
 
-h2(id='interactive__flow') Data Flow
+h1(id='interactive__flow') Data Flow
 
 p Then general protocol flow is the following:
 
@@ -26,7 +26,7 @@ ol
     li Beam Interactive repeatedly sends Reports down to the Client every #[code reportInterval].
     li The Client can send Progress Updates to the Server at it's discretion.
 
-h2(id='interactive__packets') Packets
+h1(id='interactive__packets') Packets
 p.
     Protocol Buffer Packets start with their length followed by their packet ID,
     formatted as variable length unsigned integers.
@@ -58,22 +58,21 @@ table.table
         th Packet
     tr
         td 0
-        td Handshake
+        td #[a(href='#interactive__type__tetris.Handshake') Handshake]
     tr
         td 1
-        td HandshakeACK
+        td #[a(href='#interactive__type__tetris.HandshakeACK') HandshakeACK]
     tr
         td 2
-        td Report
+        td #[a(href='#interactive__type__tetris.Report') Report]
     tr
         td 3
-        td Error
+        td #[a(href='#interactive__type__tetris.Error') Error]
     tr
         td 4
-        td Progress Update
-h2(id='interactive__protocol') Specification
+        td #[a(href='#interactive__type__tetris.ProgressUpdate') Progress Update]
+h1(id='interactive__messages') Messages
 p.
-    The protocol buffer specification for beam interactive lists packet types and
-    structures within those packets in more detail:
-
-+highlightFile('protobuf','./reference/interactive/proto/tetris.proto')
+    Each packet contains a message that corresponds to its Packet ID. Messages can be nested inside each other but only when the protocol specification allows for it. The full raw protocol specification can be found #[a(href='proto/tetris.proto') here].
+p.
+include ./proto/doc/content.pug

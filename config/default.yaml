@@ -11,6 +11,7 @@ src:
     - node_modules/bootstrap/dist/js/bootstrap.js
     - src/js/*.js
   html: src/**/*.pug
+  proto: src/reference/interactive/proto/*.proto
   icons: src/icons/*.svg
   images: src/**/*.{svg,png,jpg,gif,pdf}
 
@@ -21,3 +22,4 @@ dist:
   font: dist/font
   images: dist
   javadoc: dist/java-doc
+  proto: dist/reference/interactive/proto

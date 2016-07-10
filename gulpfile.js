@@ -10,7 +10,7 @@ require('./build/docs')(gulp, $);
 require('./build/misc')(gulp, $);
 require('./build/css')(gulp, $);
 
-gulp.task('default', ['html', 'js', 'css', 'images', 'java-doc']);
+gulp.task('default', ['html', 'js', 'css', 'images', 'java-doc', 'proto']);
 gulp.task('recompile', ['html-quick', 'js', 'css', 'images']);
 
 gulp.task('watch', () => {

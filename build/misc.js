@@ -152,6 +152,12 @@ module.exports = (gulp, $) => {
         .pipe(gulp.dest(config.dist.html));
     });
 
+    // Copies the proto file to dist
+    gulp.task('proto', () => {
+        return gulp.src(config.src.proto)
+        .pipe(gulp.dest(config.dist.proto));
+    });
+
     gulp.task('images', () => {
         return gulp.src(config.src.images)
         .pipe($.if(config.minify,
