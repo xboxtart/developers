@@ -56,16 +56,16 @@ block tutorialContent
                     Run #[code npm i -S beam-client-node beam-interactive-node robotjs]
             h3 Usage
             p.
-                Let's start by importing all of the modules which we'll need and define
-                our channel id, username and password.
-            include ./channelid.pug
+                Let's start by importing all of the modules we'll need, and define
+                our username and password.
 
             +highlightFile('javascript','./tutorials/code/node/interactive/1.js')
             p.
-                To connect to Beam Interactive we need to authenticate as our user specified above
-                using  #[code beam-client-node] we can use password based authentication to do this.
-                Once authenticated we're asking the api to join a channel as a robot with #[code beam.game.join].
-                We'll use the response from this to create a robot in the next step.
+                To connect to Beam Interactive, we need to authenticate as our user specified above
+                using #[code beam-client-node]. We can use password-based authentication to do this.
+                Once authenticated, we're asking the API to join a channel as a robot with #[code beam.game.join],
+                passing your channel ID. We'll use the response from this to create a robot in
+                the next step.
             +highlightFile('javascript','./tutorials/code/node/interactive/2.js')
             p.
                 The join request should resolve with something like this
@@ -108,9 +108,9 @@ block tutorialContent
                 which will allow us to control the mouse.
             +highlightFile('java','./tutorials/code/java/interactive/1.java')
             p.
-                Next we need to setup a Beam Interactive robot and supply it with
-                valid beam account credentials and a channel id.
-            include ./channelid.pug
+                Next we need to log in to Beam using a valid username and password,
+                and then supply the BeamAPI instance and our channel ID to the
+                RobotBuilder.
 
             +highlightFile('java','./tutorials/code/java/interactive/2.java')
             p.

@@ -2,7 +2,6 @@ const Beam = require('beam-client-node');
 const Interactive = require('beam-interactive-node');
 const rjs = require('robotjs');
 
-const channelId = 1234;
 const username = 'username';
 const password = 'password';
 
@@ -11,20 +10,21 @@ const beam = new Beam();
 beam.use('password', {
     username,
     password,
-})
-.attempt()
-.then(() => beam.game.join(channelId))
-.then(res => createRobot(res))
-.then(robot => performRobotHandShake(robot))
-.then(robot => setupRobotEvents(robot))
-.catch(err => {
+}).attempt().then(res => {
+    const channelId = res.body.channel.id;
+
+    return beam.game.join(channelId)
+        .then(res => createRobot(res, channelId))
+        .then(robot => performRobotHandShake(robot))
+        .then(robot => setupRobotEvents(robot));
+}).catch(err => {
     if (err.res) {
-        throw new Error('Error connecting to Interactive:' + err.res.body.mesage);
+        throw new Error('Error connecting to Interactive: ' + err.res.body.mesage);
     }
-    throw new Error('Error connecting to Interactive', err);
+    throw err;
 });
 
-function createRobot (res) {
+function createRobot (res, channelId) {
     return new Interactive.Robot({
         remote: res.body.address,
         channel: channelId,
@@ -55,8 +55,5 @@ function setupRobotEvents (robot) {
                 );
             }
         }
-    });
-    robot.on('error', err => {
-        throw new Error('There was an error in the Interactive connection', err);
     });
 }

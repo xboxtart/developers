@@ -1,6 +1,5 @@
+BeamUser user = beam.use(UsersService.class).login("username", "password").get();
 pro.beam.interactive.robot.Robot robot = new RobotBuilder()
-        .username("username")
-        .password("password")
-        .channel(1234)
-        .build(beam)
+        .channel(user.channel.id)
+        .build(beam, false)
         .get();

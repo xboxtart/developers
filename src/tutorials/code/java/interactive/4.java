@@ -1,6 +1,8 @@
 package pro.beam.interactive.example;
 
 import pro.beam.api.BeamAPI;
+import pro.beam.api.resource.BeamUser;
+import pro.beam.api.services.impl.UsersService;
 import pro.beam.interactive.net.packet.Protocol;
 import pro.beam.interactive.robot.RobotBuilder;
 
@@ -14,10 +16,11 @@ public class Main {
         BeamAPI beam = new BeamAPI();
         Robot controller = new Robot();
         try {
+            BeamUser user = beam.use(UsersService.class).login("username", "password").get();
             pro.beam.interactive.robot.Robot robot = new RobotBuilder()
-                    .username("username")
-                    .password("password")
-                    .channel(1234).build(beam).get();
+                    .channel(user.channel.id)
+                    .build(beam, false)
+                    .get();
 
             robot.on(Protocol.Report.class, report -> {
                 // If we have any joysticks in the report

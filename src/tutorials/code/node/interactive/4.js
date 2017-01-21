@@ -22,7 +22,4 @@ function setupRobotEvents (robot) {
             }
         }
     });
-    robot.on('error', err => {
-        throw new Error('There was an error in the Interactive connection', err);
-    });
 }
